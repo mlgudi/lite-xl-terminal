@@ -271,9 +271,8 @@ function TerminalView:new(options)
   TerminalView.super.new(self)
   options = common.merge(common.merge({}, config.plugins.terminal), options)
   if not options.newline then
-    options.newline = options.shell:find("cmd.exe") and "\r\n" or "\r"
+    options.newline = options.shell:find("cmd.exe", 1, true) and "\r\n" or "\r"
   end
-
   self.size.y = options.drawer_height
   self.options = options
   self.options.environment = common.merge(options.environment, {})
